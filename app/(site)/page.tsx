@@ -1,7 +1,7 @@
 import Header from '@/components/Header'
-import Image from 'next/image'
-import ListItem from './components/ListItem'
-import SongItem from './components/SongItem'
+// import Image from 'next/image'
+import ListItem from '@/components/ListItem'
+import SongItem from '@/components/SongItem'
 
 const list = [
   {

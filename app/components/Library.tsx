@@ -4,6 +4,9 @@ import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 import MediaItem from "./MediaItem";
 import { useRouter } from "next/navigation";
+import useUploadModal from "@/hooks/useUploadModal";
+import useAuthModal from "@/hooks/useAuthModal";
+import { useUser } from "@/hooks/useUser";
 
 const list = [
   {
@@ -25,6 +28,18 @@ const list = [
 const Library  = () => {
 
   const router = useRouter()
+  const { user } = useUser()
+  const uploadModal = useUploadModal()
+  const authModal = useAuthModal()
+
+  const handleClick = () => {
+    if (!user) {
+      authModal.onOpen()
+      return
+    }
+
+    uploadModal.onOpen()
+  }
 
   return (
     <div className="flex flex-col">
@@ -33,7 +48,7 @@ const Library  = () => {
           <TbPlaylist size={26} className="text-neutral-400" />
           <p className="text-neutral-400 font-medium text-md">Your Library</p>
         </div>
-        <AiOutlinePlus size={20} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+        <AiOutlinePlus onClick={handleClick} size={20} className="text-neutral-400 cursor-pointer hover:text-white transition" />
       </div>
 
       <div className="flex flex-col gap-y-2 mt-4 px-3">
