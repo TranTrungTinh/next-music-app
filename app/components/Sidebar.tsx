@@ -1,18 +1,24 @@
+'use client'
+
 import Box from "./Box";
 import { HiHome } from 'react-icons/hi'
 import { BiSearch } from 'react-icons/bi'
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
+import { Song } from "@/types";
+import { useMemo } from "react";
 
 interface SidebarProps {
   children: React.ReactNode;
+  songs: Song[]
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
-  children
+  children,
+  songs
 }) => {
 
-  const navigation = [
+  const navigation = useMemo(() => [
     {
       icon: HiHome,
       label: 'Home',
@@ -25,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       active: false,
       href: '/search'
     },
-  ]
+  ], [])
 
   return (  
     <div className="flex h-[calc(100%-80px)]">
@@ -39,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         </Box>
 
         <Box className="overflow-y-auto h-full">
-          <Library />
+          <Library songs={songs} />
         </Box>
       </div>
       <main className="h-full flex-1 overflow-y-auto py-2">

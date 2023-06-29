@@ -6,7 +6,8 @@ const nextConfig = {
       'i.scdn.co', 
       'media.pitchfork.com', 
       'i1.sndcdn.com',
-      'geo-media.beatsource.com'
+      'geo-media.beatsource.com',
+      'ikbwrqpzeznjcugmpcqa.supabase.co'
     ],
   }
 }

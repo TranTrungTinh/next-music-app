@@ -47,6 +47,7 @@ const UploadModal = () => {
     try {
       setIsLoading(true)
 
+      const trimTitle = values.title.trim()
       const imageFile = values.image?.[0]
       const songFile = values.song?.[0]
 
@@ -59,7 +60,7 @@ const UploadModal = () => {
       const { data: songData, error: songError } = await supabaseClient
         .storage
         .from('songs')
-        .upload(`songs/${songFile.name}/${uniqid()}`, songFile, { cacheControl: '3600', upsert: false })
+        .upload(`songs/${trimTitle}/${uniqid()}`, songFile, { cacheControl: '3600', upsert: false })
 
       if (songError) {
         toast.error('Error uploading song')
@@ -69,7 +70,7 @@ const UploadModal = () => {
       const { data: imageData, error: imageError } = await supabaseClient
         .storage
         .from('images')
-        .upload(`images/${songFile.name}/${uniqid()}`, imageFile, { cacheControl: '3600', upsert: false })
+        .upload(`images/${trimTitle}/${uniqid()}`, imageFile, { cacheControl: '3600', upsert: false })
 
       if (imageError) {
         toast.error('Error uploading image')

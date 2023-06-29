@@ -1,25 +1,27 @@
+'use client'
+
+import useLoadImage from "@/hooks/useLoadImage"
+import { Song } from "@/types"
 import Image from "next/image"
 import { useCallback } from "react"
 
 interface MediaItemProps {
-  name: string
-  image?: string
-  author: string
+  data: Song
   onClick?: (id: string) => void
 }
 
 const MediaItem: React.FC<MediaItemProps> = ({
-  name,
-  image,
-  author,
+  data,
   onClick
 }) => {
 
+  const imagePath = useLoadImage(data)
+
   const handleClick = useCallback(() => {
     if (onClick) {
-      onClick(name)
+      onClick(data.id)
     }
-  }, [onClick, name])
+  }, [onClick, data.id])
 
   return (
     <div onClick={handleClick} className="flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800/50 w-full p-2 rounded-md">
@@ -32,8 +34,8 @@ const MediaItem: React.FC<MediaItemProps> = ({
       ">
         <Image 
           fill
-          src={image || '/images/music-placeholder.png'}
-          alt={name}
+          src={imagePath || '/images/music-placeholder.png'}
+          alt={data.title}
           className="object-cover"
         />
       </div>
@@ -45,8 +47,8 @@ const MediaItem: React.FC<MediaItemProps> = ({
           overflow-hidden
         "
       >
-        <p className="text-white truncate">{name}</p>
-        <p className="text-neutral-400 text-sm truncate">By {author}</p>
+        <p className="text-white truncate">{data.title}</p>
+        <p className="text-neutral-400 text-sm truncate">By {data.author}</p>
       </div>
     </div>
   );
