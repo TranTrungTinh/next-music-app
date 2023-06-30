@@ -1,20 +1,23 @@
-import Sidebar from '@/components/Sidebar'
 import './globals.css'
+// TODO: External dependencies
 import { Figtree } from 'next/font/google'
-import SupabaseProvider from '@/providers/SupabaseProvider'
-import UserProvider from '@/providers/UserProvider'
-import ToasterProvider from '@/providers/ToasterProvider'
-import ModalProvider from './providers/ModalProvider'
-import getSongsByUserId from '../actions/getSongsByUserId'
 
-const font = Figtree({ subsets: ['latin'] })
+// TODO: Internal dependencies
+import SupabaseProvider from '~/providers/SupabaseProvider'
+import UserProvider from '~/providers/UserProvider'
+import ToasterProvider from '~/providers/ToasterProvider'
+import ModalProvider from '~/providers/ModalProvider'
+import Player from '~/components/Player'
+import Sidebar from '~/components/Sidebar'
+import getSongsByUserId from '~/actions/getSongsByUserId'
 
+export const revalidate = 0
 export const metadata = {
   title: 'Spotify Music App',
   description: 'Spotify Music App',
 }
 
-export const revalidate = 0
+const font = Figtree({ subsets: ['latin'] })
 
 export default async function RootLayout({
   children,
@@ -34,6 +37,7 @@ export default async function RootLayout({
             <Sidebar songs={userSongs}>
               {children}
             </Sidebar>
+            <Player />
           </UserProvider>
         </SupabaseProvider>
       </body>

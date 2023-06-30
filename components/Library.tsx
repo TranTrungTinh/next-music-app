@@ -3,28 +3,12 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 import MediaItem from "./MediaItem";
-import { useRouter } from "next/navigation";
-import useUploadModal from "@/hooks/useUploadModal";
-import useAuthModal from "@/hooks/useAuthModal";
-import { useUser } from "@/hooks/useUser";
-import { Song } from "@/types";
+import { Song } from "~/types";
 
-// const list = [
-//   {
-//     name: 'Liked Songs',
-//     image: "https://misc.scdn.co/liked-songs/liked-songs-64.png",
-//     author: 'Tinh Tran'
-//   },
-//   {
-//     name: 'champagne & coke',
-//     image: "https://i.scdn.co/image/ab67706c0000f8e481bcb4ae4198afa5a6135ff0",
-//     author: 'Bel'
-//   },
-//   {
-//     name: 'My Playlist #1',
-//     author: 'Tinh Tran'
-//   },
-// ]
+import useUploadModal from "~/hooks/useUploadModal";
+import useAuthModal from "~/hooks/useAuthModal";
+import { useUser } from "~/hooks/useUser";
+import useOnPlay from "~/hooks/useOnPlay";
 
 interface LibraryProps {
   songs: Song[]
@@ -34,10 +18,10 @@ const Library: React.FC<LibraryProps> = ({
   songs
 }) => {
 
-  const router = useRouter()
   const { user } = useUser()
   const uploadModal = useUploadModal()
   const authModal = useAuthModal()
+  const onPlay = useOnPlay(songs)
 
   const handleClick = () => {
     if (!user) {
@@ -60,7 +44,11 @@ const Library: React.FC<LibraryProps> = ({
 
       <div className="flex flex-col gap-y-2 mt-4 px-3">
         {songs.map((song) => (
-          <MediaItem key={song.id} data={song} onClick={(id) => router.push(['/playlist/', id].join(''))} />
+          <MediaItem 
+            key={song.id} 
+            data={song} 
+            onClick={(id: string) => onPlay(id)}  
+          />
         ))}
       </div>
     </div> 

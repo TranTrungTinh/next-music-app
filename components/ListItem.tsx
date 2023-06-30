@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { FaPlay } from "react-icons/fa";
 
 // TODO: Internal import
-import useAuthModal from "@/hooks/useAuthModal";
-import { useUser } from "@/hooks/useUser";
+import useAuthModal from "~/hooks/useAuthModal";
+import { useUser } from "~/hooks/useUser";
 
 interface ListItemProps {
   image?: string;

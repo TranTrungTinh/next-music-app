@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 // TODO: Import internal dependencies from local files.
 import Modal from "./Modal";
-import useAuthModal from "@/hooks/useAuthModal";
+import useAuthModal from "~/hooks/useAuthModal";
 
 
 const AuthModal = () => {

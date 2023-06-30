@@ -7,9 +7,9 @@ import { toast } from "react-hot-toast";
 import uniqid from "uniqid";
 
 // TODO: Internal library
-import useUploadModal from "@/hooks/useUploadModal";
+import useUploadModal from "~/hooks/useUploadModal";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useUser } from "@/hooks/useUser";
+import { useUser } from "~/hooks/useUser";
 import Modal from "./Modal";
 import Input from "./Input";
 import Button from "./Button";

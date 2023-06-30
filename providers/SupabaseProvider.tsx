@@ -6,7 +6,7 @@ import { SessionContextProvider  } from "@supabase/auth-helpers-react"
 import { useState } from "react";
 
 // TODO: Import internal dependencies from local files.
-import { Database } from "@/types/types_db";
+import { Database } from "~/types/types_db";
 
 // TODO: Props interface
 interface SupabaseProviderProps {

@@ -1,8 +1,9 @@
 'use client'
 
-import SongItem from "@/components/SongItem";
-import { Song } from "@/types";
 import { useCallback } from "react";
+import SongItem from "~/components/SongItem";
+import { Song } from "~/types";
+import useOnPlay from "~/hooks/useOnPlay";
 
 interface PageContentProps {
   songs: Song[]
@@ -12,9 +13,7 @@ const PageContent: React.FC<PageContentProps> = ({
   songs
 }) => {
 
-  const onPlay = useCallback((id: string) => {
-    console.log(id)
-  }, [])
+  const onPlay = useOnPlay(songs);
 
   if (!songs.length) {
     return (

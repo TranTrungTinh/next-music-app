@@ -2,8 +2,8 @@
 
 import { FaPlay } from "react-icons/fa";
 
-import { useUser } from "@/hooks/useUser";
-import useAuthModal from "@/hooks/useAuthModal";
+import { useUser } from "~/hooks/useUser";
+import useAuthModal from "~/hooks/useAuthModal";
 // import useSubscribeModal from "@/hooks/useSubscribeModal";
 
 

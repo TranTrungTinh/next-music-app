@@ -9,7 +9,7 @@ import {
 
 
 // TODO: Import internal dependencies from local files.
-import { UserDetails, Subscription } from '@/types'
+import { UserDetails, Subscription } from '~/types'
 
 // TODO: Props & Type
 type UserContentType = {
