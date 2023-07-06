@@ -4,6 +4,7 @@ import useLoadImage from "~/hooks/useLoadImage"
 import { Song } from "~/types"
 import Image from "next/image"
 import { useCallback } from "react"
+import usePlayer from "~/hooks/usePlayer"
 
 interface MediaItemProps {
   data: Song
@@ -16,12 +17,15 @@ const MediaItem: React.FC<MediaItemProps> = ({
 }) => {
 
   const imagePath = useLoadImage(data)
+  const player = usePlayer();
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     if (onClick) {
-      onClick(data.id)
+      return onClick(data.id);
     }
-  }, [onClick, data.id])
+  
+    return player.setId(data.id);
+  };
 
   return (
     <div onClick={handleClick} className="flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800/50 w-full p-2 rounded-md">

@@ -1,8 +1,10 @@
 import Header from "~/components/Header";
 import Image from "next/image";
 import FavoriteContent from "./components/FavoriteContent";
+import getFavoriteSongs from "~/actions/getFavoriteSongs";
 
 export default async function Favorites() {
+  const songs = await getFavoriteSongs();
 
   return (
     <div 
@@ -54,7 +56,7 @@ export default async function Favorites() {
         </div>
       </Header>
 
-      <FavoriteContent songs={[]} />
+      <FavoriteContent songs={songs} />
     </div>
   )
 }
